@@ -1,16 +1,16 @@
-package classtester;
+package utils;
 
 import java.io.*;
 
 public class MyClassLoad extends ClassLoader {
     private String rootPath;
 
-    public MyClassLoad(String rootPath) {
+    MyClassLoad(String rootPath) {
         this.rootPath = rootPath;
     }
+
     /**
      * 根据name来寻找该类
-     *
      */
     @Override
     protected Class<?> findClass(String name) {
@@ -20,15 +20,17 @@ public class MyClassLoad extends ClassLoader {
         }
         return c;
     }
+
     /**
      * 加载该类
+     *
      * @param name 类名
      * @return 类
      */
     private Class<?> findMyClass(String name) {
         try {
             byte[] bytes = getData(name);
-            if(bytes != null){
+            if (bytes != null) {
                 return this.defineClass(null, bytes, 0, bytes.length); // 调用父类方法，生成具体类
             }
         } catch (Exception e) {
@@ -36,6 +38,7 @@ public class MyClassLoad extends ClassLoader {
         }
         return null;
     }
+
     private byte[] getData(String className) {
         String path = rootPath + File.separatorChar + className + ".class";
         InputStream is = null;
@@ -61,7 +64,6 @@ public class MyClassLoad extends ClassLoader {
         }
         return null;
     }
-
 
 
 }
