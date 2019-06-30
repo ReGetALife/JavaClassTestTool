@@ -25,6 +25,7 @@ public class ClassTester {
 
     static private Method[] methodsArr;
     static private Method method;
+    static private String[] methods;
 
     static private String[] paramArr;
     static private Field[] fs;
@@ -57,7 +58,7 @@ public class ClassTester {
         myClassPath = new MyClassLoad(classPath);
         myClass = myClassPath.loadClass(className);
         methodsArr = myClass.getMethods();
-        String[] methods = new String[methodsArr.length - 9];
+        methods = new String[methodsArr.length - 9];
 
         for (int i = 0; i < methodsArr.length - 9; i++) {
             // 得到方法的返回值类型
@@ -78,6 +79,10 @@ public class ClassTester {
         }
 */
         //返回类中所有方法
+        return methods;
+    }
+
+    public static String[] getClassMethods(){
         return methods;
     }
 
